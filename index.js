@@ -4,6 +4,7 @@ const {Server} = require('socket.io');
 const mongoose = require('mongoose');
 const cors = require('cors')
 require('dotenv').config();
+const chatRoute = require('./route/chatRoute');
 
 const app = express();
 const server = http.createServer(app);
@@ -17,6 +18,7 @@ const io = new Server(server, {
 const PORT = process.env.PORT || 5000;
 
 app.use(cors());
+app.use('/chat', chatRoute)
 
 
 app.get('/', (req, res)=>{
