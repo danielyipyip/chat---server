@@ -1,10 +1,11 @@
-const express = require('express');
-const http = require('http');
-const {Server} = require('socket.io');
-const mongoose = require('mongoose');
-const cors = require('cors')
-require('dotenv').config();
-const chatRoute = require('./route/chatRoute');
+import express from 'express';
+import http from 'http';
+import {Server} from 'socket.io';
+import mongoose from 'mongoose';
+import cors  from 'cors'
+import dotenv from 'dotenv';
+dotenv.config();
+import chatRoute from './route/chatRoute.js';
 
 const app = express();
 const server = http.createServer(app);
