@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+//1 message
 const messageSchema = mongoose.Schema({
     sender: {type: String, required: true}, 
     message: {type: String, required: true}, 
@@ -7,6 +8,21 @@ const messageSchema = mongoose.Schema({
     room: {type: String, required: true} //in initial phase, input room num first
 })
 
-const messageModel = mongoose.model('message', messageSchema);
+export const Message = mongoose.model('Message', messageSchema);
 
-export default messageModel
+//many messages = chat
+const chatSchema = mongoose.Schema({
+    messages: {type: mongoose.Schema.Types.ObjectId, ref: 'Message'}
+})
+
+export const Chat = mongoose.model('Chat', chatSchema);
+
+//user -> chat
+const contactListSchema = mongoose.Schema({
+    user: {type: String, required: true}, 
+    chat: {type: mongoose.Schema.Types.ObjectId, ref: 'Chat'}
+})
+
+export const Contact = mongoose.model('Contact', contactListSchema)
+
+// export default messageModel

@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
-import MessageModel from '../model/MessageModel.js'
+import {Message} from '../model/MessageModel.js'
 
 export const getMessages = async (req, res) =>{
     try{
-        const messages = await MessageModel.find();
+        const messages = await Message.find();
         return res.status(200).json(messages);
     }catch(err){
         console.log(err);
