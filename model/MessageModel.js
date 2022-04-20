@@ -12,6 +12,7 @@ export const Message = mongoose.model('Message', messageSchema);
 
 //many messages = chat
 const chatSchema = mongoose.Schema({
+    name: String, 
     messages: {type: mongoose.Schema.Types.ObjectId, ref: 'Message'}
 })
 

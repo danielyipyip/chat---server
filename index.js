@@ -29,9 +29,21 @@ app.get('/', (req, res)=>{
 io.on('connection', socket=>{
     console.log('socket connected')
 
+    socket.on('joinroom', (user, room)=>{
+        console.log(room)
+        socket.join(room)
+        console.log(`${user} join ${room}`)
+    })
+
     socket.on('message', (msg)=>{
         console.log(msg)
         socket.emit('messageFromServer', msg);
+    })
+
+    socket.on('chatMessage', (msg, room)=>{
+        console.log(`${room}: ${msg}`)
+        socket.to(room).emit('chatMessage', msg) //this exclude sender
+        // io.in(room).emit('chatMessage', msg) this send to everyone (include sender)
     })
 
     socket.on('disconnect', ()=>{
